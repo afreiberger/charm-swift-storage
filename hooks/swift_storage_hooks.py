@@ -48,6 +48,7 @@ from charmhelpers.core.hookenv import (
     relation_set,
     relations_of_type,
     status_set,
+    network_get_primary_address,
 )
 
 from charmhelpers.fetch import (
@@ -155,6 +156,12 @@ def swift_storage_relation_joined(rid=None):
     rel_settings['device'] = ':'.join(devs)
     # Keep a reference of devices we are adding to the ring
     remember_devices(devs)
+
+    # Fix for lp:1697491 - Assign "private" binding to network you
+    # wish to relate with swift-proxy on.  Fails back to unit def.
+    private_binding_address = network_get_primary_address('private')
+    if private_binding_address is not None:
+        rel_settings['private-address'] = private_binding_address
 
     if config('prefer-ipv6'):
         rel_settings['private-address'] = get_ipv6_addr()[0]
