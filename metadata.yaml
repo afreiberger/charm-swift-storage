@@ -22,7 +22,7 @@ series:
   - trusty
   - yakkety
 extra-bindings:
-  - private
+  private:
 provides:
   nrpe-external-master:
     interface: nrpe-external-master
