@@ -22,6 +22,8 @@ series:
   - zesty
   - trusty
   - yakkety
+extra-bindings:
+  - private
 provides:
   nrpe-external-master:
     interface: nrpe-external-master

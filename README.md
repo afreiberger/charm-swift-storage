@@ -56,3 +56,11 @@ The 'openstack-origin' setting allows Swift to be installed from installation
 repositories and can be used to setup access to the Ubuntu Cloud Archive
 to support installing Swift versions more recent than what is shipped with
 Ubuntu 12.04 (1.4.8).  For more information, see config.yaml.
+
+**Juju Spaces Awareness**
+
+The juju space binding for "private" has been added to the charm to allow
+for override of the unit's default private-address advertised to it's proxy
+relations.  This is done in case swift-storage units are landed on machines
+that have alternative networks defined that are not accessible from the
+swift-proxy units it is to be related with.
